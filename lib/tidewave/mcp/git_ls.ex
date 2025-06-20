@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.GitLS do
+defmodule FraytWave.MCP.GitLS do
   @moduledoc false
 
-  alias Tidewave.MCP
+  alias FraytWave.MCP
 
   def list_files(opts \\ []) do
     execute_git(fn git_dir -> list_files(git_dir, opts) end)

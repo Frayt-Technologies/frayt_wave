@@ -1,9 +1,9 @@
-defmodule Tidewave.MixProject do
+defmodule FraytWave.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :tidewave,
+      app: :frayt_wave,
       version: "0.1.8",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
@@ -11,7 +11,7 @@ defmodule Tidewave.MixProject do
       package: package(),
 
       # Docs
-      name: "Tidewave",
+      name: "FraytWave",
       source_url: "https://github.com/tidewave-ai/tidewave_phoenix",
       homepage_url: "https://tidewave.ai/",
       docs: &docs/0
@@ -20,17 +20,17 @@ defmodule Tidewave.MixProject do
 
   def application do
     [
-      mod: {Tidewave.Application, []},
+      mod: {FraytWave.Application, []},
       extra_applications: [:logger]
     ]
   end
 
   defp package do
     [
-      description: "Tidewave for Phoenix",
+      description: "FraytWave for Phoenix",
       maintainers: ["Steffen Deusch"],
       licenses: ["Apache-2.0"],
-      links: %{"Tidewave" => "https://tidewave.ai"}
+      links: %{"FraytWave" => "https://tidewave.ai"}
     ]
   end
 

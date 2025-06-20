@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Tools.Phoenix do
+defmodule FraytWave.MCP.Tools.Phoenix do
   @moduledoc false
 
   def tools do

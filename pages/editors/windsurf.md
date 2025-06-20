@@ -1,11 +1,11 @@
 # Windsurf
 
-You can use Tidewave with [Windsurf](https://windsurf.com/). First, you must
+You can use FraytWave with [Windsurf](https://windsurf.com/). First, you must
 install a [`mcp-proxy`](../guides/mcp_proxy.md).
 
 Once you are done, open up your "Windsurf Settings", find the "Cascade" section,
 click "Add Server" and then "Add custom server". A file will open up and you can
-manually add Tidewave:
+manually add FraytWave:
 
 <!-- tabs-open -->
 
@@ -57,7 +57,7 @@ Note, if you restart your dev server, you will need to refresh the MCP connectio
 
 <!-- tabs-close -->
 
-And you are good to go! Now Windsurf will list all tools from Tidewave
+And you are good to go! Now Windsurf will list all tools from FraytWave
 available. If your application uses a SQL database, you can verify it
 all works by asking it to run `SELECT 1` as database query.
 If it fails, check out [our Troubleshooting guide](troubleshooting.md)

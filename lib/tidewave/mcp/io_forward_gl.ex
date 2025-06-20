@@ -2,7 +2,7 @@
 # licensed under Apache License 2.0
 # https://github.com/livebook-dev/livebook/blob/main/LICENSE
 
-defmodule Tidewave.MCP.IOForwardGL do
+defmodule FraytWave.MCP.IOForwardGL do
   # An IO device process forwarding all requests to sender's group
   # leader.
   #

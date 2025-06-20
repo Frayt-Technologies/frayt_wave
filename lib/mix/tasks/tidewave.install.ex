@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Tidewave.Install.Docs do
+defmodule Mix.Tasks.FraytWave.Install.Docs do
   @moduledoc false
 
   def short_doc do
@@ -11,13 +11,13 @@ defmodule Mix.Tasks.Tidewave.Install.Docs do
 end
 
 if Code.ensure_loaded?(Igniter) do
-  defmodule Mix.Tasks.Tidewave.Install do
+  defmodule Mix.Tasks.FraytWave.Install do
     @shortdoc "#{__MODULE__.Docs.short_doc()}"
 
     @moduledoc false
     @plug_example """
-    + if Code.ensure_loaded?(Tidewave) do
-    +   plug Tidewave
+    + if Code.ensure_loaded?(FraytWave) do
+    +   plug FraytWave
     + end
 
     if code_reloading? do
@@ -43,9 +43,9 @@ if Code.ensure_loaded?(Igniter) do
       igniter
       |> setup_phoenix()
       |> Igniter.add_notice("""
-      Tidewave next steps:
+      FraytWave next steps:
 
-      * Enable Tidewave in your editor: https://hexdocs.pm/tidewave/mcp.html
+      * Enable FraytWave in your editor: https://hexdocs.pm/tidewave/mcp.html
       """)
     end
 
@@ -73,15 +73,15 @@ if Code.ensure_loaded?(Igniter) do
         with :error <-
                Igniter.Code.Common.move_to(zipper, fn zipper ->
                  Igniter.Code.Function.function_call?(zipper, :plug) and
-                   Igniter.Code.Function.argument_equals?(zipper, 0, Tidewave)
+                   Igniter.Code.Function.argument_equals?(zipper, 0, FraytWave)
                end),
              {:ok, zipper} <- Igniter.Code.Common.move_to(zipper, &code_reloading?/1) do
           {:ok,
            Igniter.Code.Common.add_code(
              zipper,
              """
-             if Code.ensure_loaded?(Tidewave) do
-               plug Tidewave
+             if Code.ensure_loaded?(FraytWave) do
+               plug FraytWave
              end
              """,
              placement: :before
@@ -117,7 +117,7 @@ if Code.ensure_loaded?(Igniter) do
     end
   end
 else
-  defmodule Mix.Tasks.Tidewave.Install do
+  defmodule Mix.Tasks.FraytWave.Install do
     @shortdoc "#{__MODULE__.Docs.short_doc()} | Install `igniter` to use"
 
     @moduledoc false

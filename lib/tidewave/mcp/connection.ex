@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-defmodule Tidewave.MCP.Connection do
+defmodule FraytWave.MCP.Connection do
   @moduledoc false
   # Internal state management for SSE connections
 

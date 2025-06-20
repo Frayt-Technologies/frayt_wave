@@ -3,10 +3,10 @@ defmodule Phoenix.LiveView.Socket do
   defstruct [:assigns, :view]
 end
 
-defmodule Tidewave.MCP.Tools.PhoenixTest do
+defmodule FraytWave.MCP.Tools.PhoenixTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Phoenix
+  alias FraytWave.MCP.Tools.Phoenix
 
   describe "tools/0" do
     test "returns list of available tools" do
@@ -24,7 +24,7 @@ defmodule Tidewave.MCP.Tools.PhoenixTest do
       # which is difficult to test, so we'll just verify the function runs
       # and returns the expected format
       assert {:ok, "There are no LiveView processes connected!"} =
-               Phoenix.list_liveview_pages(%{}, Tidewave.init([]))
+               Phoenix.list_liveview_pages(%{}, FraytWave.init([]))
 
       parent = self()
 
@@ -47,10 +47,10 @@ defmodule Tidewave.MCP.Tools.PhoenixTest do
           {:ready, lv_pid} -> lv_pid
         end
 
-      {:ok, text} = Phoenix.list_liveview_pages(%{}, Tidewave.init([]))
+      {:ok, text} = Phoenix.list_liveview_pages(%{}, FraytWave.init([]))
 
       assert text =~ inspect(lv_pid)
-      assert text =~ "view: Tidewave.MCP.Tools.PhoenixTest"
+      assert text =~ "view: FraytWave.MCP.Tools.PhoenixTest"
     end
   end
 end

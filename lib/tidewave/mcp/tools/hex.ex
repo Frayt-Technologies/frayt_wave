@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Tools.Hex do
+defmodule FraytWave.MCP.Tools.Hex do
   @moduledoc false
 
   require Logger

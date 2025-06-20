@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Utils do
+defmodule FraytWave.MCP.Utils do
   @moduledoc false
 
   @max_line_length 2000

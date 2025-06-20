@@ -1,8 +1,8 @@
-defmodule Tidewave.MCP.Grep do
+defmodule FraytWave.MCP.Grep do
   @moduledoc false
 
-  alias Tidewave.MCP.GitLS
-  alias Tidewave.MCP.Utils
+  alias FraytWave.MCP.GitLS
+  alias FraytWave.MCP.Utils
 
   def grep(pattern, nil, case_sensitive, max_results) do
     with {:ok, files} <- GitLS.list_files() do

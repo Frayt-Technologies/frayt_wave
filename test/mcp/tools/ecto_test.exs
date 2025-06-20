@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.EctoTest do
+defmodule FraytWave.MCP.Tools.EctoTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Ecto
+  alias FraytWave.MCP.Tools.Ecto
 
   # Create a mock repo module for testing
   defmodule MockRepo do
@@ -61,7 +61,7 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       assert {:ok, _} =
                Ecto.execute_sql_query(
                  %{"query" => "SELECT 1", "arguments" => []},
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
     end
 
@@ -69,11 +69,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:ok, text} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "SELECT 1",
             "arguments" => []
           },
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       assert text =~ "rows: [[1]]"
@@ -84,11 +84,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:ok, text} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "SELECT $1::text",
             "arguments" => ["test"]
           },
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       assert text =~ "rows: [[\"test\"]]"
@@ -98,11 +98,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:ok, text} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "SELECT lotsofrows",
             "arguments" => []
           },
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       assert text =~ "Query returned 100 rows. Only the first 50 rows are included in the result."
@@ -113,11 +113,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:error, message} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "ERROR",
             "arguments" => []
           },
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       assert message =~ "Failed to execute query"
@@ -128,11 +128,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:ok, text} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "SELECT charlist",
             "arguments" => []
           },
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       assert text =~ "rows: [97, 98, 99]"
@@ -142,11 +142,11 @@ defmodule Tidewave.MCP.Tools.EctoTest do
       {:ok, text} =
         Ecto.execute_sql_query(
           %{
-            "repo" => "Tidewave.MCP.Tools.EctoTest.MockRepo",
+            "repo" => "FraytWave.MCP.Tools.EctoTest.MockRepo",
             "query" => "SELECT lotsofrows",
             "arguments" => []
           },
-          Tidewave.init(inspect_opts: [limit: 10])
+          FraytWave.init(inspect_opts: [limit: 10])
         )
 
       assert text =~ "Query returned 100 rows. Only the first 10 rows are included in the result."

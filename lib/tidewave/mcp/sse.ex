@@ -22,14 +22,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-defmodule Tidewave.MCP.SSE do
+defmodule FraytWave.MCP.SSE do
   @moduledoc false
 
   require Logger
 
   import Plug.Conn
-  alias Tidewave.MCP.Connection
-  alias Tidewave.MCP.Server
+  alias FraytWave.MCP.Connection
+  alias FraytWave.MCP.Server
 
   def handle_sse(conn) do
     session_id = generate_session_id()
@@ -59,7 +59,7 @@ defmodule Tidewave.MCP.SSE do
           Logger.debug("Full message: #{inspect(msg, pretty: true)}")
           Connection.handle_initialize(connection_pid)
 
-          case Tidewave.MCP.Server.handle_message(msg, connection_pid) do
+          case FraytWave.MCP.Server.handle_message(msg, connection_pid) do
             {:ok, response} ->
               Logger.debug("Sending SSE response: #{inspect(response, pretty: true)}")
               Connection.send_sse_message(connection_pid, response)
@@ -171,7 +171,7 @@ defmodule Tidewave.MCP.SSE do
 
   defp send_initial_message(conn, session_id) do
     endpoint =
-      "#{conn.scheme}://#{conn.host}:#{conn.port}/tidewave/mcp/message?sessionId=#{session_id}"
+      "#{conn.scheme}://#{conn.host}:#{conn.port}/frayt_wave/mcp/message?sessionId=#{session_id}"
 
     case chunk(conn, "event: endpoint\ndata: #{endpoint}\n\n") do
       {:ok, conn} -> conn
@@ -181,7 +181,7 @@ defmodule Tidewave.MCP.SSE do
 
   defp enter_loop(conn, session_id) do
     try do
-      Registry.register(Tidewave.MCP.Registry, session_id, [])
+      Registry.register(FraytWave.MCP.Registry, session_id, [])
       Connection.init({session_id, conn})
     catch
       :exit, :normal -> conn
@@ -191,7 +191,7 @@ defmodule Tidewave.MCP.SSE do
       # Bandit re-uses the same process for new requests,
       # therefore we need to unregister manually and clear
       # any pending messages from the inbox
-      Registry.unregister(Tidewave.MCP.Registry, session_id)
+      Registry.unregister(FraytWave.MCP.Registry, session_id)
       clear_inbox()
       send(self(), {:plug_conn, :sent})
     end
@@ -214,7 +214,7 @@ defmodule Tidewave.MCP.SSE do
   end
 
   defp lookup_session(session_id) do
-    case Registry.lookup(Tidewave.MCP.Registry, session_id) do
+    case Registry.lookup(FraytWave.MCP.Registry, session_id) do
       [{connection_pid, _}] -> {:ok, connection_pid}
       [] -> {:error, :session_not_found}
     end

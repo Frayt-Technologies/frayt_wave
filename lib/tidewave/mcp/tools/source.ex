@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.Source do
+defmodule FraytWave.MCP.Tools.Source do
   @moduledoc false
 
-  alias Tidewave.MCP
+  alias FraytWave.MCP
 
   def tools do
     [

@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Tidewave.InstallTest do
+defmodule Mix.Tasks.FraytWave.InstallTest do
   use ExUnit.Case, async: true
 
   import Igniter.Test
@@ -28,8 +28,8 @@ defmodule Mix.Tasks.Tidewave.InstallTest do
     )
     |> Igniter.compose_task("tidewave.install")
     |> assert_has_patch("lib/test_web/endpoint.ex", """
-    + |  if Code.ensure_loaded?(Tidewave) do
-    + |    plug(Tidewave)
+    + |  if Code.ensure_loaded?(FraytWave) do
+    + |    plug(FraytWave)
     + |  end
     + |
       |  if code_reloading? do

@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.EvalTest do
+defmodule FraytWave.MCP.Tools.EvalTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Eval
+  alias FraytWave.MCP.Tools.Eval
 
   describe "tools/0" do
     test "returns list of available tools" do
@@ -21,7 +21,7 @@ defmodule Tidewave.MCP.Tools.EvalTest do
     test "evaluates simple Elixir expressions" do
       code = "1 + 1"
 
-      assert {:ok, "2", %{}} = Eval.project_eval(%{"code" => code}, Tidewave.init([]))
+      assert {:ok, "2", %{}} = Eval.project_eval(%{"code" => code}, FraytWave.init([]))
     end
 
     test "evaluates complex Elixir expressions" do
@@ -33,30 +33,30 @@ defmodule Tidewave.MCP.Tools.EvalTest do
       Temp.add(40, 2)
       """
 
-      assert {:ok, "42", %{}} = Eval.project_eval(%{"code" => code}, Tidewave.init([]))
+      assert {:ok, "42", %{}} = Eval.project_eval(%{"code" => code}, FraytWave.init([]))
     end
 
     test "returns formatted errors for exceptions" do
       code = "1 / 0"
 
-      assert {:ok, error, %{}} = Eval.project_eval(%{"code" => code}, Tidewave.init([]))
+      assert {:ok, error, %{}} = Eval.project_eval(%{"code" => code}, FraytWave.init([]))
       assert error =~ "ArithmeticError"
       assert error =~ "bad argument in arithmetic expression"
     end
 
     test "can use IEx helpers" do
-      code = "h Tidewave"
+      code = "h FraytWave"
 
-      assert {:ok, docs, %{}} = Eval.project_eval(%{"code" => code}, Tidewave.init([]))
+      assert {:ok, docs, %{}} = Eval.project_eval(%{"code" => code}, FraytWave.init([]))
 
-      assert docs =~ "Tidewave"
+      assert docs =~ "FraytWave"
     end
 
     test "catches exits" do
       assert {:error, "Failed to evaluate code. Process exited with reason: :brutal_kill"} =
                Eval.project_eval(
                  %{"code" => "Process.exit(self(), :brutal_kill)"},
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
     end
 
@@ -64,13 +64,13 @@ defmodule Tidewave.MCP.Tools.EvalTest do
       assert {:error, "Evaluation timed out after 50 milliseconds."} =
                Eval.project_eval(
                  %{"code" => "Process.sleep(10_000)", "timeout" => 50},
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
     end
 
     test "returns IO up to exception" do
       assert {:ok, result, %{}} =
-               Eval.project_eval(%{"code" => ~s[IO.puts("Hello!"); 1 / 0]}, Tidewave.init([]))
+               Eval.project_eval(%{"code" => ~s[IO.puts("Hello!"); 1 / 0]}, FraytWave.init([]))
 
       assert result =~ "Hello!"
       assert result =~ "ArithmeticError"
@@ -80,7 +80,7 @@ defmodule Tidewave.MCP.Tools.EvalTest do
       assert {:ok, result, %{}} =
                Eval.project_eval(
                  %{"code" => "hello"},
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
 
       assert result =~ "undefined variable \"hello\""
@@ -110,7 +110,7 @@ defmodule Tidewave.MCP.Tools.EvalTest do
     end
 
     test "is only listable if include_fs_tools is set" do
-      {tools, _} = Tidewave.MCP.Server.tools_and_dispatch()
+      {tools, _} = FraytWave.MCP.Server.tools_and_dispatch()
       assert %{listable: fun} = Enum.find(tools, fn %{name: name} -> name == "shell_eval" end)
       assert fun.(%{"include_fs_tools" => "true"})
       refute fun.(%{"other" => "params"})

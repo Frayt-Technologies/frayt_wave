@@ -1,4 +1,4 @@
-defmodule Tidewave do
+defmodule FraytWave do
   @moduledoc false
   @behaviour Plug
 
@@ -17,12 +17,12 @@ defmodule Tidewave do
   end
 
   @impl true
-  def call(%Plug.Conn{path_info: ["tidewave" | rest]} = conn, config) do
+  def call(%Plug.Conn{path_info: ["frayt_wave" | rest]} = conn, config) do
     config = %{config | phoenix_endpoint: conn.private[:phoenix_endpoint]}
 
     conn
     |> Plug.Conn.put_private(:tidewave_config, config)
-    |> Plug.forward(rest, Tidewave.Router, [])
+    |> Plug.forward(rest, FraytWave.Router, [])
     |> Plug.Conn.halt()
   end
 

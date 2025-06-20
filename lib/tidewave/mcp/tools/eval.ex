@@ -1,10 +1,10 @@
-defmodule Tidewave.MCP.Tools.Eval do
+defmodule FraytWave.MCP.Tools.Eval do
   @moduledoc false
 
   @compile {:no_warn_undefined, Phoenix.CodeReloader}
 
-  alias Tidewave.MCP
-  alias Tidewave.MCP.IOForwardGL
+  alias FraytWave.MCP
+  alias FraytWave.MCP.IOForwardGL
 
   def tools do
     [

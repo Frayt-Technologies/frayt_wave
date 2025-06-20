@@ -1,9 +1,9 @@
-defmodule Tidewave.MCP.Tools.FS do
+defmodule FraytWave.MCP.Tools.FS do
   @moduledoc false
 
-  alias Tidewave.MCP
-  alias Tidewave.MCP.GitLS
-  alias Tidewave.MCP.Utils
+  alias FraytWave.MCP
+  alias FraytWave.MCP.GitLS
+  alias FraytWave.MCP.Utils
 
   def ripgrep_executable, do: System.find_executable("rg")
 
@@ -162,7 +162,7 @@ defmodule Tidewave.MCP.Tools.FS do
     ]
   end
 
-  defp listable(connect_params) do
+  def listable(connect_params) do
     not is_nil(connect_params["include_fs_tools"])
   end
 

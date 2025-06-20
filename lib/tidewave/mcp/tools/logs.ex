@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Tools.Logs do
+defmodule FraytWave.MCP.Tools.Logs do
   @moduledoc false
 
   def tools do
@@ -28,7 +28,7 @@ defmodule Tidewave.MCP.Tools.Logs do
   def get_logs(args) do
     case args do
       %{"tail" => n} ->
-        {:ok, Enum.join(Tidewave.MCP.Logger.get_logs(n), "\n")}
+        {:ok, Enum.join(FraytWave.MCP.Logger.get_logs(n), "\n")}
 
       _ ->
         {:error, :invalid_arguments}

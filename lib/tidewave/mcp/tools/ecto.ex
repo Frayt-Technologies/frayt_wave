@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.Ecto do
+defmodule FraytWave.MCP.Tools.Ecto do
   @moduledoc false
 
-  alias Tidewave.MCP.Tools.Source
+  alias FraytWave.MCP.Tools.Source
 
   def tools do
     if repos_configured?() do

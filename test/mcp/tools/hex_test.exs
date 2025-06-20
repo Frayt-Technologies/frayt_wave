@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.HexTest do
+defmodule FraytWave.MCP.Tools.HexTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Hex
+  alias FraytWave.MCP.Tools.Hex
 
   setup do
     Req.Test.set_req_test_from_context(%{})
@@ -10,7 +10,7 @@ defmodule Tidewave.MCP.Tools.HexTest do
 
   describe "package_docs_search/1" do
     test "successfully searches documentation" do
-      Req.Test.stub(Tidewave.MCP.Tools.Hex, fn conn ->
+      Req.Test.stub(FraytWave.MCP.Tools.Hex, fn conn ->
         assert conn.query_params["filter_by"] =~ "plug"
 
         Req.Test.json(conn, %{
@@ -27,7 +27,7 @@ defmodule Tidewave.MCP.Tools.HexTest do
     end
 
     test "can provide list of packages" do
-      Req.Test.stub(Tidewave.MCP.Tools.Hex, fn conn ->
+      Req.Test.stub(FraytWave.MCP.Tools.Hex, fn conn ->
         case conn.host do
           "hex.pm" ->
             Req.Test.json(conn, %{
@@ -58,7 +58,7 @@ defmodule Tidewave.MCP.Tools.HexTest do
 
   describe "package_search/1" do
     test "successfully searches packages" do
-      Req.Test.stub(Tidewave.MCP.Tools.Hex, fn conn ->
+      Req.Test.stub(FraytWave.MCP.Tools.Hex, fn conn ->
         Req.Test.json(conn, %{
           "packages" => [
             %{
@@ -83,7 +83,7 @@ defmodule Tidewave.MCP.Tools.HexTest do
     end
 
     test "includes sort parameter when provided" do
-      Req.Test.stub(Tidewave.MCP.Tools.Hex, fn conn ->
+      Req.Test.stub(FraytWave.MCP.Tools.Hex, fn conn ->
         assert conn.query_params["sort"] == "downloads"
         Req.Test.json(conn, %{"packages" => []})
       end)

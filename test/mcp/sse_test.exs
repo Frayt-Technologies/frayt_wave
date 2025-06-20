@@ -1,37 +1,37 @@
-defmodule Tidewave.MCP.SSETest do
+defmodule FraytWave.MCP.SSETest do
   use ExUnit.Case, async: true
   import Plug.Test
   import Plug.Conn
 
   import ExUnit.CaptureLog
 
-  alias Tidewave.MCP.Connection
+  alias FraytWave.MCP.Connection
 
   @moduletag :capture_log
 
   describe "handle_sse/1" do
     test "establishes SSE connection with correct headers" do
       conn =
-        conn(:get, "/tidewave/mcp")
+        conn(:get, "/frayt_wave/mcp")
         |> Map.put(:scheme, :http)
         |> Map.put(:host, "localhost")
         |> Map.put(:port, 9000)
 
       # Start the SSE connection in a separate process to avoid blocking the test
-      :proc_lib.spawn_link(fn -> Tidewave.call(conn, Tidewave.init([])) end)
+      :proc_lib.spawn_link(fn -> FraytWave.call(conn, FraytWave.init([])) end)
 
       # Wait briefly for the connection to be established
       :timer.sleep(100)
 
       # Verify that a connection was established in the ETS table
-      assert Registry.count(Tidewave.MCP.Registry) == 1
+      assert Registry.count(FraytWave.MCP.Registry) == 1
     end
   end
 
   describe "handle_message/1" do
     setup do
       sse_conn =
-        conn(:get, "/tidewave/mcp?include_fs_tools=true")
+        conn(:get, "/frayt_wave/mcp?include_fs_tools=true")
         |> Map.put(:scheme, :http)
         |> Map.put(:host, "localhost")
         |> Map.put(:port, 9000)
@@ -39,14 +39,14 @@ defmodule Tidewave.MCP.SSETest do
 
       state_pid =
         :proc_lib.spawn_link(fn ->
-          Tidewave.call(sse_conn, Tidewave.init([]))
+          FraytWave.call(sse_conn, FraytWave.init([]))
         end)
 
       %{session_id: session_id} = :sys.get_state(state_pid)
 
       # Build a test connection for a POST to /message
       conn =
-        conn(:post, "/tidewave/mcp/message", %{})
+        conn(:post, "/frayt_wave/mcp/message", %{})
         |> Map.put(:query_params, %{"sessionId" => session_id})
         |> put_req_header("content-type", "application/json")
 
@@ -70,7 +70,7 @@ defmodule Tidewave.MCP.SSETest do
       }
 
       conn = %{conn | body_params: message}
-      response = Tidewave.call(conn, Tidewave.init([]))
+      response = FraytWave.call(conn, FraytWave.init([]))
 
       assert response.status == 202
       assert Jason.decode!(response.resp_body) == %{"status" => "ok"}
@@ -86,7 +86,7 @@ defmodule Tidewave.MCP.SSETest do
       }
 
       conn = %{conn | body_params: message}
-      response = Tidewave.call(conn, Tidewave.init([]))
+      response = FraytWave.call(conn, FraytWave.init([]))
 
       assert response.status == 202
       assert Jason.decode!(response.resp_body) == %{"status" => "ok"}
@@ -100,7 +100,7 @@ defmodule Tidewave.MCP.SSETest do
       }
 
       conn = %{conn | body_params: message}
-      response = Tidewave.call(conn, Tidewave.init([]))
+      response = FraytWave.call(conn, FraytWave.init([]))
 
       assert response.status == 202
       assert Jason.decode!(response.resp_body) == %{"status" => "ok"}
@@ -111,7 +111,7 @@ defmodule Tidewave.MCP.SSETest do
 
       log =
         capture_log([level: :warning], fn ->
-          response = Tidewave.call(conn, Tidewave.init([]))
+          response = FraytWave.call(conn, FraytWave.init([]))
 
           assert response.status == 400
           assert Jason.decode!(response.resp_body) == %{"error" => "session_id is required"}
@@ -125,7 +125,7 @@ defmodule Tidewave.MCP.SSETest do
 
       log =
         capture_log([level: :warning], fn ->
-          response = Tidewave.call(conn, Tidewave.init([]))
+          response = FraytWave.call(conn, FraytWave.init([]))
 
           assert response.status == 400
           assert Jason.decode!(response.resp_body) == %{"error" => "Invalid session ID"}
@@ -139,7 +139,7 @@ defmodule Tidewave.MCP.SSETest do
 
       log =
         capture_log([level: :warning], fn ->
-          response = Tidewave.call(conn, Tidewave.init([]))
+          response = FraytWave.call(conn, FraytWave.init([]))
 
           assert response.status == 404
           assert Jason.decode!(response.resp_body) == %{"error" => "Could not find session"}
@@ -154,7 +154,7 @@ defmodule Tidewave.MCP.SSETest do
       log =
         capture_log([level: :warning], fn ->
           conn = %{conn | body_params: message}
-          response = Tidewave.call(conn, Tidewave.init([]))
+          response = FraytWave.call(conn, FraytWave.init([]))
 
           assert response.status == 200
           response_body = Jason.decode!(response.resp_body)
@@ -169,16 +169,16 @@ defmodule Tidewave.MCP.SSETest do
       :ok = Connection.handle_initialize(state_pid)
 
       assert %{status: 202, resp_body: ~s({"status":"ok"})} =
-               Tidewave.call(
+               FraytWave.call(
                  %{
                    conn
                    | body_params: %{"jsonrpc" => "2.0", "method" => "notifications/initialized"}
                  },
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
 
       assert %{status: 202, resp_body: ~s({"status":"ok"})} =
-               Tidewave.call(
+               FraytWave.call(
                  %{
                    conn
                    | body_params: %{
@@ -191,7 +191,7 @@ defmodule Tidewave.MCP.SSETest do
                        }
                      }
                  },
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
 
       assert Process.alive?(state_pid)

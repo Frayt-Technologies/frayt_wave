@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.FSTest do
+defmodule FraytWave.MCP.Tools.FSTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.FS
+  alias FraytWave.MCP.Tools.FS
 
   describe "tools/0" do
     test "returns list of available tools" do

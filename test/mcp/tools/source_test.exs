@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.SourceTest do
+defmodule FraytWave.MCP.Tools.SourceTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Source
+  alias FraytWave.MCP.Tools.Source
 
   describe "get_source_location/1" do
     test "returns source code error handling" do
@@ -12,7 +12,7 @@ defmodule Tidewave.MCP.Tools.SourceTest do
     end
 
     test "handles valid module" do
-      result = Source.get_source_location(%{"reference" => "Tidewave"})
+      result = Source.get_source_location(%{"reference" => "FraytWave"})
       assert {:ok, text} = result
       assert text =~ "tidewave.ex"
     end
@@ -25,7 +25,7 @@ defmodule Tidewave.MCP.Tools.SourceTest do
     test "handles valid module and function" do
       result =
         Source.get_source_location(%{
-          "reference" => "Tidewave.MCP.Tools.Source.get_source_location"
+          "reference" => "FraytWave.MCP.Tools.Source.get_source_location"
         })
 
       assert {:ok, text} = result
@@ -35,7 +35,7 @@ defmodule Tidewave.MCP.Tools.SourceTest do
     test "handles valid mfa" do
       result =
         Source.get_source_location(%{
-          "reference" => "Tidewave.MCP.Tools.Source.get_source_location/1"
+          "reference" => "FraytWave.MCP.Tools.Source.get_source_location/1"
         })
 
       assert {:ok, text} = result

@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Logger do
+defmodule FraytWave.MCP.Logger do
   @moduledoc false
 
   use GenServer

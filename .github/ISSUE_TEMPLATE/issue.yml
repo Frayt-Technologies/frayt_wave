@@ -1,6 +1,6 @@
 ---
 name: Editor/MCP client integration issue
-description: File a bug report related to Tidewave and your editor/MCP client
+description: File a bug report related to FraytWave and your editor/MCP client
 
 body:
   - type: markdown
@@ -37,7 +37,7 @@ body:
   - type: input
     id: tidewave-version
     attributes:
-      label: What is your Tidewave version?
+      label: What is your FraytWave version?
     validations:
       required: true
 

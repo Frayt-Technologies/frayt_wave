@@ -1,6 +1,6 @@
 # Tips and tricks
 
-Some tips and tricks to use Tidewave and AI assistants and agents effectively.
+Some tips and tricks to use FraytWave and AI assistants and agents effectively.
 
 ## Be specific
 
@@ -10,7 +10,7 @@ exactly what you asked. However, if you are vague, they may try things
 completely different from what you had in mind, sometimes surprising you,
 othertimes leading to work that will have to be discarded.
 
-When it comes to using Tidewave, if you are expecting it to use a particular
+When it comes to using FraytWave, if you are expecting it to use a particular
 tool, be specific about it. Say use `project_eval` to validate some API
 or to execute a given query using `execute_sql_query`. The listing of all
 tools are available [in the MCP page](../editors/mcp.md).
@@ -32,14 +32,14 @@ Write tests for your changes and run `mix test` afterwards.
 
 The rules file can also be used to prompt your editor to use certain
 tools above others, so you can steer them towards using your favorite
-Tidewave tools more.
+FraytWave tools more.
 
 ## Use eval: AI's swiss army knife
 
-AI assistants excel at coding. Since Tidewave can evaluate code within your
+AI assistants excel at coding. Since FraytWave can evaluate code within your
 project (using the `project_eval` tool), as well as execute commands in the
 terminal (using `shell_eval`), you can ask the AI to execute complex tasks
-through Tidewave's eval without a need for additional tooling. With Tidewave,
+through FraytWave's eval without a need for additional tooling. With FraytWave,
 you can:
 
   * evaluate code within the project context
@@ -65,7 +65,7 @@ consolidated and makes extending functionality a natural part of your developmen
 process, like any other code you write.
 
 In our experience, AI models become less effective when there are too many tools,
-and work best with a few powerful ones. With Tidewave's eval, we make the power
+and work best with a few powerful ones. With FraytWave's eval, we make the power
 of full programming languages within the context of your project available to
 AI assistants.
 

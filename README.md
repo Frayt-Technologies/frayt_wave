@@ -1,6 +1,6 @@
-# Tidewave
+# FraytWave
 
-Tidewave speeds up development with an AI assistant that understands your web application,
+FraytWave speeds up development with an AI assistant that understands your web application,
 how it runs, and what it delivers. Our current release connects your editor's
 assistant to your web framework runtime via [MCP](https://modelcontextprotocol.io/).
 
@@ -8,7 +8,7 @@ assistant to your web framework runtime via [MCP](https://modelcontextprotocol.i
 
 ## Key Features
 
-Tidewave provides tools that allow your LLM of choice to:
+FraytWave provides tools that allow your LLM of choice to:
 
 - get documentation
 - inspect your application logs to help debugging errors
@@ -23,7 +23,7 @@ and more.
 
 ### Manually
 
-You can install Tidewave by adding the `tidewave` package to your list of dependencies in `mix.exs`:
+You can install FraytWave by adding the `tidewave` package to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -36,14 +36,14 @@ end
 Then, for Phoenix applications, go to your `lib/my_app_web/endpoint.ex` and right above the `if code_reloading? do` block, add:
 
 ```diff
-+  if Code.ensure_loaded?(Tidewave) do
-+    plug Tidewave
++  if Code.ensure_loaded?(FraytWave) do
++    plug FraytWave
 +  end
 
    if code_reloading? do
 ```
 
-Tidewave will now run on the same port as your regular Phoenix application.
+FraytWave will now run on the same port as your regular Phoenix application.
 In particular, the MCP is located by default at http://localhost:4000/tidewave/mcp.
 [You must configure your editor and AI assistants accordingly](https://hexdocs.pm/tidewave/mcp.html).
 
@@ -59,13 +59,13 @@ mix archive.install hex igniter_new
 mix igniter.install tidewave
 ```
 
-Tidewave will now run on the same port as your regular Phoenix application.
+FraytWave will now run on the same port as your regular Phoenix application.
 In particular, the MCP is located by default at http://localhost:4000/tidewave/mcp.
 [You must configure your editor and AI assistants accordingly](https://hexdocs.pm/tidewave/mcp.html).
 
 ### Usage in non-Phoenix applications
 
-Tidewave is a regular Plug, so you can use it in any Elixir project, as long as you run a webserver. For example, you can use `bandit` (and `tidewave`) in dev mode in your `mix.exs`:
+FraytWave is a regular Plug, so you can use it in any Elixir project, as long as you run a webserver. For example, you can use `bandit` (and `tidewave`) in dev mode in your `mix.exs`:
 
 ```elixir
 {:tidewave, "~> 0.1", only: :dev},
@@ -77,10 +77,10 @@ And then when starting your application, you can add the following child spec co
 ```elixir
   children =
     children ++
-      # Conditionally start Tidewave server for development
-      if Mix.env() == :dev and Code.ensure_loaded?(Tidewave) and Code.ensure_loaded?(Bandit) do
-        Logger.info("Starting Tidewave server on port 4000 for development")
-        [{Bandit, plug: Tidewave, port: 4000}]
+      # Conditionally start FraytWave server for development
+      if Mix.env() == :dev and Code.ensure_loaded?(FraytWave) and Code.ensure_loaded?(Bandit) do
+        Logger.info("Starting FraytWave server on port 4000 for development")
+        [{Bandit, plug: FraytWave, port: 4000}]
       else
         []
       end
@@ -88,19 +88,19 @@ And then when starting your application, you can add the following child spec co
 
 ## Configuration
 
-You may configure the `Tidewave` plug using the following syntax:
+You may configure the `FraytWave` plug using the following syntax:
 
 ```elixir
-  plug Tidewave, options
+  plug FraytWave, options
 ```
 
 The following options are available:
 
   * `:allowed_origins` - if using the MCP from a browser, this can be a list of values matched against the `Origin` header to prevent cross origin and DNS rebinding attacks. When using Phoenix, this defaults to the `Endpoint`'s URL.
 
-  * `:allow_remote_access` - Tidewave only allows requests from localhost by default, even if your server listens on other interfaces as well. If you trust your network and need to access Tidewave from a different machine, this configuration can be set to `true`.
+  * `:allow_remote_access` - FraytWave only allows requests from localhost by default, even if your server listens on other interfaces as well. If you trust your network and need to access FraytWave from a different machine, this configuration can be set to `true`.
 
-  * `:autoformat` - When writing Elixir source files, Tidewave will automatically format them with `mix format` by default. Setting this option to `false` disabled autoformatting.
+  * `:autoformat` - When writing Elixir source files, FraytWave will automatically format them with `mix format` by default. Setting this option to `false` disabled autoformatting.
 
   * `:inspect_opts` - Custom options passed to `Kernel.inspect/2` when formatting some tool results. Defaults to: `[charlists: :as_lists, limit: 50, pretty: true]`
 

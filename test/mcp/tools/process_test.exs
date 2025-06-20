@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.Tools.ProcessTest do
+defmodule FraytWave.MCP.Tools.ProcessTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Tools.Process, as: ProcessTool
+  alias FraytWave.MCP.Tools.Process, as: ProcessTool
 
   defp dead_pid do
     parent = self()
@@ -103,7 +103,7 @@ defmodule Tidewave.MCP.Tools.ProcessTest do
       {:ok, result} =
         ProcessTool.trace_process(
           %{"pid" => inspect(pid1), "message_count" => 3},
-          Tidewave.init([])
+          FraytWave.init([])
         )
 
       lines = String.split(result, "\n")
@@ -126,7 +126,7 @@ defmodule Tidewave.MCP.Tools.ProcessTest do
                    "message_count" => 10,
                    "timeout" => 50
                  },
-                 Tidewave.init([])
+                 FraytWave.init([])
                )
 
       assert text =~ "Timed out waiting for more messages"

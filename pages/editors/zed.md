@@ -1,6 +1,6 @@
 # Zed
 
-You can use Tidewave with [Zed](https://zed.dev/). First, you must
+You can use FraytWave with [Zed](https://zed.dev/). First, you must
 install a [`mcp-proxy`](../guides/mcp_proxy.md).
 
 Once that's done, open up the Assistant tab and click on the `⋯` icon at the
@@ -25,7 +25,7 @@ c:\path\to\mcp-proxy.exe http://localhost:$PORT/tidewave/mcp
 
 Where `$PORT` is the port your web application is running on.
 
-And you are good to go! Now Zed will list all tools from Tidewave available.
+And you are good to go! Now Zed will list all tools from FraytWave available.
 If your application uses a SQL database, you can verify it all works by asking
 it to run `SELECT 1` as database query. If it fails, check out
 [our Troubleshooting guide](troubleshooting.md). You can also manage your

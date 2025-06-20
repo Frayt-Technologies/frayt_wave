@@ -1,6 +1,6 @@
 # Neovim
 
-You can use Tidewave with [Neovim](https://neovim.io/) through the [MCP Hub extension](https://github.com/ravitemer/mcphub.nvim),
+You can use FraytWave with [Neovim](https://neovim.io/) through the [MCP Hub extension](https://github.com/ravitemer/mcphub.nvim),
 and integration with [Avante](https://github.com/ravitemer/mcphub.nvim/wiki/Avante) or
 [CodeCompanion](https://github.com/ravitemer/mcphub.nvim/wiki/CodeCompanion).
 

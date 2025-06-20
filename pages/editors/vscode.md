@@ -1,6 +1,6 @@
 # VS Code
 
-You can use Tidewave with Visual Studio Code through the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
+You can use FraytWave with Visual Studio Code through the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot).
 
 At the time of writing, MCP support in GitHub Copilot is in public preview and only
 available when **a)** the 'Editor Preview Features' flag is enabled in your GitHub
@@ -38,6 +38,6 @@ See the [MCP proxy documentation](guides/mcp_proxy.md).
 <!-- tabs-close -->
 
 And you are good to go! Now the Copilot extension will list all tools from
-Tidewave available. If your application uses a SQL database, you can verify
+FraytWave available. If your application uses a SQL database, you can verify
 it all works by asking it to run `SELECT 1` as database query.
 If it fails, check out [our Troubleshooting guide](troubleshooting.md).

@@ -1,10 +1,10 @@
-defmodule Tidewave.Router do
+defmodule FraytWave.Router do
   @moduledoc false
 
   use Plug.Router
 
   import Plug.Conn
-  alias Tidewave.MCP
+  alias FraytWave.MCP
 
   plug(:match)
   plug(:check_remote_ip)
@@ -59,9 +59,9 @@ defmodule Tidewave.Router do
       true ->
         conn
         |> send_resp(403, """
-        For security reasons, Tidewave does not accept remote connections by default.
+        For security reasons, FraytWave does not accept remote connections by default.
 
-        If you really want to allow remote connections, configure the Tidewave with the `allow_remote_access: true` option.
+        If you really want to allow remote connections, configure the FraytWave with the `allow_remote_access: true` option.
         """)
         |> halt()
     end
@@ -107,10 +107,10 @@ defmodule Tidewave.Router do
       _ ->
         raise """
         no Phoenix endpoint found! You must manually configure the \
-        allowed origins for Tidewave by setting the `:allowed_origins` \
-        option on the Tidewave plug:
+        allowed origins for FraytWave by setting the `:allowed_origins` \
+        option on the FraytWave plug:
 
-            plug Tidewave, allowed_origins: ["http://localhost:4000"]
+            plug FraytWave, allowed_origins: ["http://localhost:4000"]
         """
     end
   end
@@ -128,7 +128,7 @@ defmodule Tidewave.Router do
       }
     }
 
-    # We return a basic page that loads script from Tidewave server to
+    # We return a basic page that loads script from FraytWave server to
     # bootstrap the client app. Note that the script name does not
     # include a hash, since is is very small and its main purpose is
     # to fetch the latest assets, those include the hash and can be

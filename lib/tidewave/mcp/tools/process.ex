@@ -1,4 +1,4 @@
-defmodule Tidewave.MCP.Tools.Process do
+defmodule FraytWave.MCP.Tools.Process do
   @moduledoc false
 
   def tools do

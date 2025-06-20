@@ -1,18 +1,17 @@
-defmodule Tidewave.MCP.Server do
+defmodule FraytWave.MCP.Server do
   @moduledoc false
 
   require Logger
 
-  alias Tidewave.MCP
-  alias Tidewave.MCP.Connection
-  alias Tidewave.MCP.Tools
+  alias FraytWave.MCP
+  alias FraytWave.MCP.Connection
+  alias FraytWave.MCP.Tools
 
   @protocol_version "2024-11-05"
   @vsn Mix.Project.config()[:version]
 
   @doc false
-  def init_tools do
-    tools = raw_tools()
+  def init_tools(tools) do
     dispatch_map = Map.new(tools, fn tool -> {tool.name, tool.callback} end)
 
     :persistent_term.put({__MODULE__, :tools_and_dispatch}, {tools, dispatch_map})
@@ -20,21 +19,7 @@ defmodule Tidewave.MCP.Server do
 
   @doc false
   def tools_and_dispatch do
-    :persistent_term.get({__MODULE__, :tools_and_dispatch})
-  end
-
-  defp raw_tools do
-    [
-      Tools.FS.tools(),
-      Tools.Logs.tools(),
-      Tools.Source.tools(),
-      Tools.Eval.tools(),
-      Tools.Ecto.tools(),
-      Tools.Process.tools(),
-      Tools.Phoenix.tools(),
-      Tools.Hex.tools()
-    ]
-    |> List.flatten()
+    :persistent_term.get({__MODULE__, :tools_and_dispatch}) |> IO.inspect(label: "tools_and_dispatch")
   end
 
   @doc false
@@ -114,7 +99,7 @@ defmodule Tidewave.MCP.Server do
                }
              },
              serverInfo: %{
-               name: "Tidewave MCP Server",
+               name: "FraytWave MCP Server",
                version: @vsn
              },
              tools: tools(Connection.connect_params_and_assigns(state_pid))

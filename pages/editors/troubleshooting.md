@@ -1,6 +1,6 @@
 # Troubleshooting
 
-This page contains several steps to help debug issues when integrating Tidewave with an editor or MCP client. There are usually three distinct components to investigate:
+This page contains several steps to help debug issues when integrating FraytWave with an editor or MCP client. There are usually three distinct components to investigate:
 
 * Your web application
 * (optional, but recommended) The [MCP proxy](../guides/mcp_proxy.md)
@@ -45,7 +45,7 @@ In particular, you want to check that:
 
 * Does the response (the parts starting with `<`) have a "transfer-encoding" (or "Transfer-Encoding") header? Some web servers may automatically compress responses, which may not be handled correctly by all editors or MCP clients. In such cases, you may want to disable compression or use a [MCP proxy](../guides/mcp_proxy.md)
 
-* Are you using Docker or similar? By default, Tidewave and your web server only accept requests coming from localhost. Depending on the bridge mode you use, you need to configure both to allow external connections (but then remember to only expose your Docker ports locally)
+* Are you using Docker or similar? By default, FraytWave and your web server only accept requests coming from localhost. Depending on the bridge mode you use, you need to configure both to allow external connections (but then remember to only expose your Docker ports locally)
 
 ## The MCP proxy
 
@@ -70,5 +70,5 @@ In case it still does not work, here are places you can get help to diagnose it:
 * [Our Discord server](https://discord.gg/5GhK7E54yA) - the best place to interact with the community and get help specific to your editor and framework
 
 * Our issues trackers - in case we messed something up, please let us know. Here are framework specific links:
-  * [Tidewave for Phoenix](https://github.com/tidewave-ai/tidewave_phoenix/issues)
-  * [Tidewave for Rails](https://github.com/tidewave-ai/tidewave_rails/issues)
+  * [FraytWave for Phoenix](https://github.com/tidewave-ai/tidewave_phoenix/issues)
+  * [FraytWave for Rails](https://github.com/tidewave-ai/tidewave_rails/issues)

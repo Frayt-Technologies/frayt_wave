@@ -1,8 +1,8 @@
 # Claude Desktop
 
-> To use Tidewave with Claude Code, [see here](claude_code.md).
+> To use FraytWave with Claude Code, [see here](claude_code.md).
 
-To use Tidewave with Claude Desktop, you must first install
+To use FraytWave with Claude Desktop, you must first install
 a [`mcp-proxy`](../guides/mcp_proxy.md).
 
 Then open up Claude Desktop, go to "Settings" and, under the

@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.IOForwardGLTest do
+defmodule FraytWave.MCP.IOForwardGLTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.IOForwardGL
+  alias FraytWave.MCP.IOForwardGL
 
   defmacrop eventually(interval, tries, fun) do
     quote do

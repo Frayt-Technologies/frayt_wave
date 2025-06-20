@@ -1,8 +1,8 @@
-defmodule Tidewave.MCP.Tools.FSSyncTest do
+defmodule FraytWave.MCP.Tools.FSSyncTest do
   # we use File.cd to change the working directory, so these tests run synchronously
   use ExUnit.Case, async: false
 
-  alias Tidewave.MCP.Tools.FS
+  alias FraytWave.MCP.Tools.FS
 
   setup context do
     if tmp_dir = context[:tmp_dir] do

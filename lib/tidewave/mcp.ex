@@ -1,9 +1,9 @@
-defmodule Tidewave.MCP do
+defmodule FraytWave.MCP do
   @moduledoc false
 
   use Supervisor
 
-  alias Tidewave.MCP
+  alias FraytWave.MCP
 
   def start_link(init_arg) do
     Supervisor.start_link(__MODULE__, init_arg, name: __MODULE__)
@@ -18,12 +18,10 @@ defmodule Tidewave.MCP do
       Application.put_env(:tidewave, :root, File.cwd!())
     end
 
-    MCP.Server.init_tools()
-
     children = [
       {Registry, name: MCP.Registry, keys: :unique},
-      Tidewave.MCP.Logger,
-      {Tidewave.MCP.IOForwardGL, name: :standard_error}
+      FraytWave.MCP.Logger,
+      {FraytWave.MCP.IOForwardGL, name: :standard_error}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

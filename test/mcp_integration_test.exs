@@ -1,4 +1,4 @@
-defmodule Tidewave.MCPIntegrationTest do
+defmodule FraytWave.MCPIntegrationTest do
   use ExUnit.Case, async: false
   require Logger
 
@@ -7,8 +7,17 @@ defmodule Tidewave.MCPIntegrationTest do
   @moduletag :capture_log
 
   setup context do
+    FraytWave.MCP.Server.init_tools([
+      FraytWave.MCP.Tools.FS.tools(),
+      FraytWave.MCP.Tools.Logs.tools(),
+      FraytWave.MCP.Tools.Source.tools(),
+      FraytWave.MCP.Tools.Eval.tools(),
+      FraytWave.MCP.Tools.Ecto.tools(),
+      FraytWave.MCP.Tools.Process.tools(),
+      FraytWave.MCP.Tools.Phoenix.tools()
+    ] |> List.flatten())
     start_supervised!(
-      {Bandit, plug: {Tidewave, context[:plug_opts] || []}, port: 9100, startup_log: false},
+      {Bandit, plug: {FraytWave, context[:plug_opts] || []}, port: 9100, startup_log: false},
       shutdown: 10
     )
 
@@ -28,6 +37,7 @@ defmodule Tidewave.MCPIntegrationTest do
   @tag base_url: "http://localhost:9100/tidewave/mcp"
   test "does not include fs tools by default", %{request: request} do
     assert %{tools: tools} = request
+    IO.inspect(tools, label: "tools")
     assert is_list(tools)
 
     tool_names = Enum.map(tools, & &1["name"])

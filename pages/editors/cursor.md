@@ -1,9 +1,9 @@
 # Cursor
 
-You can use Tidewave with [Cursor](https://cursor.com/).
+You can use FraytWave with [Cursor](https://cursor.com/).
 
 Cursor allows you to place a file at `.cursor/mcp.json`, for configuration
-which is specific to your project. Given Tidewave is explicitly tied to your
+which is specific to your project. Given FraytWave is explicitly tied to your
 web application, that's our preferred approach.
 
 Create a file at `.cursor/mcp.json` and add the following contents.
@@ -67,7 +67,7 @@ Where `$PORT` is the port your web application is running on. If the `mcp-proxy`
 
 <!-- tabs-close -->
 
-If you prefer, you can also add Tidewave globally to your editor
+If you prefer, you can also add FraytWave globally to your editor
 by adding the same contents as above to the `~/.cursor/mcp.json`
 file. If you have trouble locating such file, open up Cursor's
 assistant tab and click on the `⋯` icon on the top right and

@@ -1,7 +1,7 @@
-defmodule Tidewave.MCP.UtilsTest do
+defmodule FraytWave.MCP.UtilsTest do
   use ExUnit.Case, async: true
 
-  alias Tidewave.MCP.Utils
+  alias FraytWave.MCP.Utils
 
   describe "truncate_lines/1" do
     test "truncates lines that are too long" do

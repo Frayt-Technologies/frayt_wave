@@ -38,7 +38,7 @@
 ## 0.1.3 (2025-05-01)
 
 * Enhancements
-  * new Igniter installer for Tidewave
+  * new Igniter installer for FraytWave
   * new documentation page for Neovim
 * Bug fixes
   * allow tool calls without arguments
