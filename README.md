@@ -1,3 +1,3 @@
 # FraytWave
 
-FraytWave is a gross and dirty hack. You should go away.
+This is a clone of TideWave with small modifications to support passing custom tools.
